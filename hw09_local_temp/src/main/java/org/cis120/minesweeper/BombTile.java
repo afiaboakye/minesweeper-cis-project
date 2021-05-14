@@ -1,0 +1,34 @@
+package org.cis120.minesweeper;
+
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
+public class BombTile extends Tile {
+    private String imgFile;
+    private BufferedImage img;
+    private String tile;
+
+    public BombTile(int xPos, int yPos, int width, int height) {
+        super(xPos, yPos, width, height, 0, "files/bombtile.png");
+        this.imgFile = "files/bombtile.png";
+        this.tile = "bomb";
+        try {
+            if (img == null) {
+                img = ImageIO.read(new File(imgFile));
+            }
+        } catch (IOException e) {
+            System.out.println("IOException Gotten");
+        }
+    }
+
+    public String getTile() {
+        return this.tile;
+    }
+
+    public void drawTile(Graphics g) {
+        g.drawImage(img, this.getXPos(), this.getYPos(), this.getWidth(), this.getHeight(), null);
+    }
+}
